@@ -88,6 +88,17 @@
 </script>
 
 <main>
+	<section>
+		<h1>Data: atl320-feb</h1>
+	</section>
+	<fieldset class="sticky top-0">
+		<legend>Rotation day</legend>
+		<div id="legend" style="--days-in-range: {daysInMonth}">
+			{#each { length: daysInMonth }, day}
+				<div>{day}</div>
+			{/each}
+		</div>
+	</fieldset>
 	<section id="rotation-grid" style="--days-in-range: {daysInMonth}">
 		{#each rotations as rotation, i}
 			{@const currentRow = getCurrentRow(rotations[i - 1], rotation)}
@@ -117,13 +128,28 @@
 </main>
 
 <style>
+	main {
+		display: contents;
+	}
 	#rotation-grid {
 		display: grid;
-		gap: 2px;
+		row-gap: 2px;
 		grid-template-columns: repeat(calc(var(--days-in-range) * 24), [hour] 1fr);
 		grid-auto-rows: 25px;
 
 		/* Non-essential */
-		height: 100vh;
+		height: 100%;
+		min-height: 100vh;
+	}
+	#legend {
+		width: 100vw;
+		display: grid;
+		column-gap: 1px;
+		grid-template-columns: repeat(var(--days-in-range), 1fr);
+		grid-auto-rows: 25px;
+
+		& > div {
+			background: lightgrey;
+		}
 	}
 </style>
