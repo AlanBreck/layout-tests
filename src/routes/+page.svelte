@@ -14,9 +14,7 @@
 
 	const _rotations = Object.values(
 		Object.groupBy(orig_rotations, ({ rotationNumber }) => rotationNumber)
-	)
-		.filter((g) => g.length >= 2)
-		.flat(1);
+	).flat(1);
 
 	const earliest = new Date(Math.min(..._rotations.map((r) => new Date(`${r.checkIn}Z`))));
 	const latest = new Date(Math.max(..._rotations.map((r) => new Date(`${r.release}Z`))));
@@ -122,7 +120,7 @@
 	#rotation-grid {
 		display: grid;
 		gap: 2px;
-		grid-template-columns: repeat(calc(var(--days-in-range) * 24), [hour] 10px);
+		grid-template-columns: repeat(calc(var(--days-in-range) * 24), [hour] 1fr);
 		grid-auto-rows: 25px;
 
 		/* Non-essential */
